@@ -92,7 +92,7 @@ py38-plus-extra:
     - pytz
 
     - python-pytoml
-    - python3-rpm
-    - python3-libvirt
-    - python3-dnf
-    - python3-createrepo_c
+    - rpm
+    - libvirt-python
+    - dnf
+    - createrepo_c

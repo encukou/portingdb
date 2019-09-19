@@ -297,13 +297,13 @@ class Py3QueryCommand(dnf.cli.Command):
         all_provides = {str(r).split()[0]: p for p in python_versions for r in p.provides
                         if not str(r).startswith(PROVIDES_BLACKLIST)}
         for pkg in progressbar(sorted(python_versions.keys()), 'Getting requirements'):
-            if python_versions[pkg] == {2}:
-                continue
-            if pkg.name in NAME_NOTS:
-                # "NAME_NOTS" are Python-version-agnostic packages,
-                # such as wheels, RPM macros and documentation.
-                # Don't track those as python2 dependencies.
-                continue
+            #if python_versions[pkg] == {2}:
+            #    continue
+            #if pkg.name in NAME_NOTS:
+            #    # "NAME_NOTS" are Python-version-agnostic packages,
+            #    # such as wheels, RPM macros and documentation.
+            #    # Don't track those as python2 dependencies.
+            #    continue
             reqs = set()
             build_reqs = set()
             provides = set(pkg.provides)
@@ -332,9 +332,7 @@ class Py3QueryCommand(dnf.cli.Command):
         unversioned_requirers = collections.defaultdict(set)
         for pkg in progressbar(set.union(*requirers_of_pkg.values(), *build_requirers_of_pkg.values()),
                                'Processing packages with ambiguous dependencies'):
-            # Ignore packages that are:
-            if (python_versions.get(pkg) == {3} or  # Python 3 only
-                    pkg.name.endswith('-doc')):  # Documentation
+            if (python_versions.get(pkg) == {2}):
                 continue
             for require in (pkg.requires + pkg.requires_pre + pkg.recommends +
                             pkg.suggests + pkg.supplements + pkg.enhances):
@@ -352,8 +350,7 @@ class Py3QueryCommand(dnf.cli.Command):
                     is_unversioned(real_require)
                     and requirement
                     and not (
-                        real_require.endswith('-doc')
-                        or python_versions.get(requirement) == {3}
+                        python_versions.get(requirement) == {2}
                     )
                     and real_require not in NAME_NOTS
                     and real_require != 'python-unversioned-command'
