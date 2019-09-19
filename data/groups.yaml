@@ -1,170 +1,98 @@
-# N.B.: Use "hidden: true" if FESCo exception has not (yet) been granted.
+py38-python36:
+    name: Candidates from the rh-python36 collection
+    hidden: true
+    packages:
+    - PyYAML
+    - babel
+    - mod_wsgi
+    - numpy
+    - python-PyMySQL
+    - python-docutils
+    - python-jinja2
+    - python-markupsafe
+    - python-pip
+    - python-psycopg2
+    - python-pygments
+    - python-setuptools
+    - python-six
+    - python-sqlalchemy
+    - python-virtualenv
+    - python-wheel
+    - scipy
 
-gimp:
-    name: GIMP
+py38-python36-python27:
+    name: Candidates from the rh-python36 collection + python27 RHEL8
+    packages:
+    - PyYAML
+    - babel
+    - mod_wsgi
+    - numpy
+    - python-PyMySQL
+    - python-docutils
+    - python-jinja2
+    - python-markupsafe
+    - python-pip
+    - python-psycopg2
+    - python-pygments
+    - python-setuptools
+    - python-six
+    - python-sqlalchemy
+    - python-virtualenv
+    - python-wheel
+    - scipy
+
+    - Cython
+    - pytest
+    - python-attrs
+    - python-chardet
+    - python-dns
+    - python-docs
+    - python-idna
+    - python-lxml
+    - python-pluggy
+    - python-pysocks
+    - python-requests
+    - python-urllib3
+    - pytz
+
+py38-plus-extra:
+    name: Candidates from the rh-python36 collection + python27 RHEL8 + extras
     hidden: true
     packages:
-    - gimp
-olpc:
-    name: OLPC/Sugar
-    hidden: true
-    packages:
-    # dnf repoquery --repo rawhide 'sugar-*' 'olpc-*' --qf '- %{name}'
-    - olpc-kbdshim
-    - olpc-netutils
-    - olpc-switch-desktop
-    - olpc-update
-    - olpc-utils
-    - sugar-abacus
-    - sugar-artwork
-    - sugar-base
-    - sugar-browse
-    - sugar-calculator
-    - sugar-castle
-    - sugar-chat
-    - sugar-clock
-    - sugar-colordeducto
-    - sugar-connect
-    - sugar-countries
-    - sugar-datastore
-    - sugar-deducto
-    - sugar-distance
-    - sugar-finance
-    - sugar-flip
-    - sugar-flipsticks
-    - sugar-fototoon
-    - sugar-fractionbounce
-    - sugar-getiabooks
-    - sugar-hello-world
-    - sugar-imageviewer
-    - sugar-implode
-    - sugar-infoslicer
-    - sugar-jukebox
-    - sugar-kuku
-    - sugar-labyrinth
-    - sugar-locosugar
-    - sugar-log
-    - sugar-logos
-    - sugar-maze
-    - sugar-measure
-    - sugar-memorize
-    - sugar-moon
-    - sugar-nutrition
-    - sugar-paint
-    - sugar-physics
-    - sugar-pippy
-    - sugar-playgo
-    - sugar-portfolio
-    - sugar-pukllanapac
-    - sugar-read
-    - sugar-recall
-    - sugar-record
-    - sugar-ruler
-    - sugar-runner
-    - sugar-settings-manager
-    - sugar-speak
-    - sugar-srilanka
-    - sugar-starchart
-    - sugar-stopwatch
-    - sugar-story
-    - sugar-terminal
-    - sugar-toolkit
-    - sugar-toolkit-gtk3
-    - sugar-turtleart
-    - sugar-typing-turtle
-    - sugar-view-slides
-    - sugar-visualmatch
-    - sugar-words
-    - sugar-write
-    - sugar-xoeditor
-    - sugar-xoirc
-    - sugar-xomail
-    - sugar-yupana
-trac:
-    name: Version Control & Trac
-    hidden: true
-    packages:
-    - trac
-    - trac-CGit-plugin
-    - trac-accountmanager-plugin
-    - trac-advancedticketworkflow-plugin
-    - trac-authopenid-plugin
-    - trac-batchmodify-plugin
-    - trac-bazaar-plugin
-    - trac-blackmagictickettweaks-plugin
-    - trac-code-comments-plugin
-    - trac-condfieldsgenshi-plugin
-    - trac-customfieldadmin-plugin
-    - trac-defaultcc-plugin
-    - trac-doxygen-plugin
-    - trac-git-plugin
-    - trac-iniadmin-plugin
-    - trac-mastertickets-plugin
-    - trac-mercurial-plugin
-    - trac-monotone-plugin
-    - trac-navadd-plugin
-    - trac-privateticketsplugin
-    - trac-sensitivetickets-plugin
-    - trac-spamfilter-plugin
-    - trac-sphinx-plugin
-    - trac-sumfields-plugin
-    - trac-themeengine-plugin
-    - trac-ticketdelete-plugin
-    - trac-tickettemplate-plugin
-    - trac-tocmacro-plugin
-    - trac-tracnav-plugin
-    - trac-vatar-plugin
-    - trac-watchlist-plugin
-    - trac-workflowadmin-plugin
-    - trac-xmlrpc-plugin
-    - bitten
-    - mercurial
-chromium:
-    name: Chromium browser
-    exception: https://pagure.io/fesco/issue/2214
-    packages:
-    - chromium
-    - python-psutil
-flowblade:
-    name: Flowblade video editor
-    exception: https://pagure.io/fesco/issue/2219
-    packages:
-    - mlt  # note that flowblade itself is in rpmfusion, this is a dependency
-postgresql:
-    name: PostgreSQL database
-    exception: https://pagure.io/fesco/issue/2217
-    packages:
-    - postgresql
-pypy:
-    name: PyPy
-    exception: https://pagure.io/fesco/issue/2130
-    packages:
-    - pypy
-    - pypy3
-qt5-qtwebengine:
-    name: qt5-qtwebengine
-    exception: https://pagure.io/fesco/issue/2208
-    packages:
-    - qt5-qtwebengine
-texlive:
-    name: TeX Live
-    exception: https://pagure.io/fesco/issue/2215
-    packages:
-    - texlive-base
-gnuradio:
-    name: GNU Radio
-    hidden: true
-    packages:
-    - gnuradio
-    - gr-air-modes
-    - gr-fcdproplus
-    - gr-hpsdr
-    - gr-iio
-    - gr-iqbal
-    - gr-osmosdr
-    - gr-rds
-cassandra:
-    name: Cassandra
-    hidden: true
-    packages:
-    - cassandra
+    - PyYAML
+    - babel
+    - mod_wsgi
+    - numpy
+    - python-PyMySQL
+    - python-docutils
+    - python-jinja2
+    - python-markupsafe
+    - python-pip
+    - python-psycopg2
+    - python-pygments
+    - python-setuptools
+    - python-six
+    - python-sqlalchemy
+    - python-virtualenv
+    - python-wheel
+    - scipy
+
+    - Cython
+    - pytest
+    - python-attrs
+    - python-chardet
+    - python-dns
+    - python-docs
+    - python-idna
+    - python-lxml
+    - python-pluggy
+    - python-pysocks
+    - python-requests
+    - python-urllib3
+    - pytz
+
+    - python-pytoml
+    - python3-rpm
+    - python3-libvirt
+    - python3-dnf
+    - python3-createrepo_c

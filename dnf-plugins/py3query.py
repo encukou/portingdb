@@ -31,14 +31,6 @@ from taskotron_python_versions.two_three import NAME_NOTS
 BUGZILLA_URL = 'bugzilla.redhat.com'
 # Tracker bugs which are used to find all relevant package bugs
 TRACKER_BUGS = {
-    1698500: "F31_PY2REMOVAL",
-    1625773: "PY2REMOVAL",
-    1690439: "PY2FTBI",
-    1312032: "PY3PATCH-AVAILABLE",
-    1333770: "PY3PATCH-PUSH",
-    1432186: "PY3-EXECUTABLES",
-    1285816: "PYTHON3",
-    1322027: "PYTHON3-UPSTREAM",
     1700324: "F31FailsToInstall",
     1700317: "F31FTBFS",
 }
@@ -305,7 +297,7 @@ class Py3QueryCommand(dnf.cli.Command):
         all_provides = {str(r).split()[0]: p for p in python_versions for r in p.provides
                         if not str(r).startswith(PROVIDES_BLACKLIST)}
         for pkg in progressbar(sorted(python_versions.keys()), 'Getting requirements'):
-            if python_versions[pkg] == {3}:
+            if python_versions[pkg] == {2}:
                 continue
             if pkg.name in NAME_NOTS:
                 # "NAME_NOTS" are Python-version-agnostic packages,
