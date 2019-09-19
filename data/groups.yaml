@@ -63,36 +63,39 @@ py38-plus-extra:
     - babel
     - mod_wsgi
     - numpy
+
     - python-PyMySQL
-    - python-docutils
+    #- python-mysql
+
+    #- python-docutils
     - python-jinja2
-    - python-markupsafe
+    #- python-markupsafe
     - python-pip
     - python-psycopg2
-    - python-pygments
+    #- python-pygments
     - python-setuptools
     - python-six
-    - python-sqlalchemy
-    - python-virtualenv
+    #- python-sqlalchemy
+    #- python-virtualenv
     - python-wheel
     - scipy
 
     - Cython
-    - pytest
-    - python-attrs
-    - python-chardet
-    - python-dns
+#    - pytest
+    #- python-attrs
+    #- python-chardet
+    #- python-dns
     - python-docs
-    - python-idna
+    #- python-idna
     - python-lxml
-    - python-pluggy
-    - python-pysocks
+    #- python-pluggy
+    #- python-pysocks
     - python-requests
-    - python-urllib3
-    - pytz
+    #- python-urllib3
+    #- pytz
 
     - python-pytoml
-    - rpm
-    - libvirt-python
-    - dnf
-    - createrepo_c
+    #- rpm
+    #- libvirt-python
+    #- dnf
+    #- createrepo_c

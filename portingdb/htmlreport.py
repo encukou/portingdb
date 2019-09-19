@@ -148,7 +148,7 @@ def generate_deptree(package, **kwargs):
     return tree.children
 
 
-def generate_deptrees(packages, keys=('deps', 'build_deps')):
+def generate_deptrees(packages, keys=('deps', 'build_deps'), excluded=()):
     nodes = [TreeNode(p, {'start'}) for p in packages]
     to_expand = deque(nodes)
     expanded = set()
@@ -161,7 +161,7 @@ def generate_deptrees(packages, keys=('deps', 'build_deps')):
             for pkg in list(pkg[keys[0]].values()) + list(pkg[keys[1]].values())
         }
         children = sorted(
-            packages.values(),
+            (p for p in packages.values() if p['name'] not in excluded),
             key=status_sort_key,
         )
         if not children:
@@ -235,7 +235,10 @@ def group(grp):
             (url_for('group', grp=grp), group['name']),
         ),
         grp=group,
-        deptree=generate_deptrees(group['seed_packages'].values()),
+        deptree=generate_deptrees(
+            group['seed_packages'].values(),
+            excluded=data['excluded'],
+        ),
         status_summary=status_summary,
     )
 

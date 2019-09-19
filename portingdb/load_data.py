@@ -244,6 +244,55 @@ def load_from_directories(data, directories):
                 if d['status'] not in DONE_STATUSES
             }
 
+    data['excluded'] = {
+        'python-twisted',
+        'python-towncrier',
+        'python-argcomplete',
+        'fish',
+        'python-sphinx',
+        'python-sphinx-removed-in',
+        'python-sphinxcontrib-trio',
+        'python-sphinx_rtd_theme',
+        'python2-pytest',
+        'python-mock',
+        'python-pbr',
+        'python-pytest-xdist',
+        'python-pytest-timeout',
+        'python2-setuptools',
+
+        'python-zope-interface',
+        'python-coverage',
+        'python-jedi',
+        'python-freezegun',
+        'python-decorator',
+        'python-setuptools_scm',
+        'python-setuptools_git',
+        'python-enum34',
+        'python-ipaddress',
+        'python-rpm-generators',
+        'python-rpm-macros',
+        'python-pygments-pytest',
+        'python-iso8601',  # ?
+        'python-pytest-httpbin',
+        'python-scripttest',
+        'python-pytest-fixture-config',
+        'python2-numpy',
+        'python-pytest-cov',
+        'python-backports-ssl_match_hostname',
+        'python27',
+        'python-virtualenv',
+        'python-tornado',
+        'python-nose',
+
+
+        'pytest',
+        'python-hypothesis',
+        'python-cryptography-vectors',
+        'python-pytest-virtualenv',
+        'python-pretend',
+        'python-pytest-mock',
+    }
+
     # Update groups
     for ident, group in groups.items():
         group['ident'] = ident
@@ -259,6 +308,7 @@ def load_from_directories(data, directories):
         names_added = set()
         group['packages'] = pkgs = {}
         while names_to_add:
+            names_to_add -= data['excluded']
             name = names_to_add.pop()
             if name in names_added:
                 continue
