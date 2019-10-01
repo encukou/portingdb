@@ -46,6 +46,25 @@
         ignore_unversioned_requires=ignore_unversioned_requires,
     ) -}}
     {{- ftbfs_badge(pkg) -}}
+    <sup title="ETA {{ pkg['eta'] | format_time_ago }} ({{ pkg['eta'] }})">
+        {% if 'orphan' in pkg['maintainers'] %}
+            <i class="fa fa-power-off"></i>
+        {% endif %}
+        {% if pkg['eta'] < now_plus() %}
+            <i class="fa fa-hourglass-o"></i>
+        {% elif pkg['eta'] < now_plus(days=10) %}
+            <i class="fa fa-hourglass-3"></i>{{ (pkg['eta']-now).days }}d
+        {% elif pkg['eta'] < now_plus(weeks=3) %}
+            <i class="fa fa-hourglass-2"></i>{{ (pkg['eta']-now).days // 7 }}w
+        {% elif pkg['eta'] < now_plus(weeks=6) %}
+            <i class="fa fa-hourglass-1"></i>{{ (pkg['eta']-now).days // 7 }}w
+        {% elif pkg['eta'] < now_plus(weeks=8) %}
+            <i class="fa fa-hourglass"></i>{{ (pkg['eta']-now).days // 30 }}m
+        {% elif pkg['eta'] < now_plus(weeks=60) %}
+        {% else %}
+            <i class="fa fa-history"></i>
+        {% endif %}
+    </sup>
 {%- endmacro %}
 
 {% macro pkglink_icon(pkg) -%}

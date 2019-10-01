@@ -335,3 +335,14 @@ def load_from_directories(data, directories):
         packages[name]['repo_info_modified'] = datetime.datetime.fromtimestamp(
             int(info['date_modified'])
         )
+
+    for name, pkg in packages.items():
+        if any(
+            name in grp['seed_packages'] for grp in groups.values()
+            if grp.get('exception')
+        ):
+            pkg['eta'] = datetime.datetime(9999, 1, 23)
+        elif 'orphan' in pkg['maintainers'] and 'repo_info_modified' in pkg:
+            pkg['eta'] = pkg['repo_info_modified'] + datetime.timedelta(days=6*7)
+        else:
+            pkg['eta'] = datetime.datetime(2019, 12, 15)

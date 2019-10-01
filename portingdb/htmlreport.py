@@ -261,30 +261,37 @@ def format_time_ago(date):
     """Displays roughly how long ago the date was in a human readable format"""
     now = datetime.datetime.utcnow()
     diff = now - date
+    if now < date:
+        ago = 'in {}'.format
+        diff = -diff
+        yesterday = 'tomorrow'
+    else:
+        ago = '{} ago'.format
+        yesterday = 'yesterday'
 
     # Years
     if diff.days >= 365:
         if diff.days >= 2 * 365:
-            return "{} years ago".format(math.floor(diff.days / 365))
+            return ago("{} years").format(math.floor(diff.days / 365))
         else:
-            return "a year ago"
+            return ago("a year")
     # Months
-    elif diff.days >= 31:
+    elif diff.days >= 7*8:
         if diff.days >= 2 * 30:
-            return "{} months ago".format(math.floor(diff.days / 30))
+            return ago("{} months").format(math.floor(diff.days / 30))
         else:
-            return "a month ago"
+            return ago("a month")
     # Weeks
     elif diff.days >= 7:
         if diff.days >= 2 * 7:
-            return "{} weeks ago".format(math.floor(diff.days / 7))
+            return ago("{} weeks").format(math.floor(diff.days / 7))
         else:
-            return "a week ago"
+            return ago("a week")
     # Days
     elif diff.days >= 2:
-        return "{} days ago".format(diff.days)
+        return ago("{} days").format(diff.days)
     elif diff.days == 1:
-        return "yesterday"
+        return yesterday
     else:
         return "today"
 
@@ -700,6 +707,7 @@ def create_app(directories, cache_config=None):
     app.jinja_env.filters['split_digits'] = split_digits
     app.jinja_env.filters['summarize_statuses'] = (
         lambda p: summarize_statuses(data['statuses'], p))
+    now = datetime.datetime.utcnow()
 
     @app.context_processor
     def add_template_globals():
@@ -708,6 +716,8 @@ def create_app(directories, cache_config=None):
             'len': len,
             'log': math.log,
             'config': app.config['CONFIG'],
+            'now_plus': lambda **kwargs: now + datetime.timedelta(**kwargs),
+            'now': now,
         }
 
     def _add_route(url, func, **kwargs):
