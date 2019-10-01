@@ -330,3 +330,8 @@ def load_from_directories(data, directories):
                if names:
                     nonpy_requirers.setdefault(kind, set()).update(names)
         package['non_python_requirers'] = nonpy_requirers
+
+    for name, info in data_from_file(directories, 'orphan_info').items():
+        packages[name]['repo_info_modified'] = datetime.datetime.fromtimestamp(
+            int(info['date_modified'])
+        )

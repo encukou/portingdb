@@ -55,9 +55,10 @@ The following steps are needed to update pordingdb data:
     (venv) $ python -u scripts/get-history.py --update data/history.csv | tee history.csv && mv history.csv data/history.csv
     (venv) $ python -u scripts/get-history.py -n --update data/history-naming.csv | tee history-naming.csv && mv history-naming.csv data/history-naming.csv
 
-#. Update the maintainer list::
+#. Update the maintainer list and orphan info::
 
     $ wget https://src.fedoraproject.org/extras/pagure_owner_alias.json -O data/pagure_owner_alias.json
+    $ python scripts/update-orphan-time.py > data/orphan_info.json
 
 #. You can check how portingdb looks with the new data:
 

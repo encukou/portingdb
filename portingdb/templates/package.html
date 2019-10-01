@@ -82,6 +82,22 @@
                 </div>
                 <br>
             {% endif %}
+            {% if 'orphan' in pkg['maintainers'] %}
+                <div>
+                    {% if 'repo_info_modified' in pkg %}
+                        The package was orphaned
+                        <time
+                            datetime="{{ pkg['repo_info_modified'] }}"
+                            title="{{ pkg['repo_info_modified'] }}"
+                        >
+                            {{ pkg['repo_info_modified'] | format_time_ago -}}
+                        </time>.
+                    {% else %}
+                        The package is orphaned.
+                    {% endif %}
+                </div>
+                <br>
+            {% endif %}
             {% if pkg.unversioned_requires %}
                 <div>
                     {{ unversioned_requires_badge(blocked=False) }}
