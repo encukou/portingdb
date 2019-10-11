@@ -7,3 +7,4 @@ __pycache__/
 *.pyc
 /_check_drops/
 /noninstallable.json
+/_dnf_cache_dir/
